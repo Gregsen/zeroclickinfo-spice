@@ -13,7 +13,7 @@ icon_url 'http://marvel.com/favicon.ico';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Marvel.pm';
 attribution github => ['Gregsen', 'dd'];
 
-triggers start => 'Marvel';
+triggers start => 'marvel';
 
 # helper function to read my dev keys from file
 sub getKey  {
