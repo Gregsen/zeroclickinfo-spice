@@ -9,9 +9,9 @@ primary_example_queries 'Marvel spider-man';
 source 'Marvel';
 category 'special';
 topics 'science';
-icon_url '';
+icon_url 'http://marvel.com/favicon.ico';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Marvel.pm';
-attribution github => ['Gregsen', ''];
+attribution github => ['Gregsen', 'dd'];
 
 triggers startend => 'Marvel';
 
