@@ -19,7 +19,7 @@ triggers startend => 'Marvel';
 sub getKey  {
     my ($file) = @_;
     print $file;
-    open (my $fh, "<", $fil)e or die $!;
+    open (my $fh, "<", $file) or die $!;
     my $pass = <$fh>;
     chomp($pass);
 
