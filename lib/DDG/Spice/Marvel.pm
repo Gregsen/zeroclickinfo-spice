@@ -27,7 +27,7 @@ sub getKey  {
 my $privKey     = &getKey('privkey.txt');
 my $pubkey      = &getKey('pubkey.txt');
 my $timeStamp   = time;
-my $secretKey   = md5_hex($timeStamp$privKey$pubKey);
+my $secretKey   = md5_hex($timeStamp.$privKey.$pubKey);
 
 spice to => 'http://gateway.marvel.com/v1/public/characters?name=$1'
             .'?ts=$timeStamp&apikey=$pubKey&hash=$secretKey';
