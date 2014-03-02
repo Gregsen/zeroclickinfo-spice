@@ -16,7 +16,7 @@ attribution github => ['Gregsen', ''];
 triggers startend => 'Marvel';
 
 # helper function to read my dev keys from file
-sub getKey ( $file ) {
+sub getKey  {
     my $file = @_;
     open my $fh "<", $fh or die $!;
     my $pass = chomp(<$fh>);
@@ -24,8 +24,8 @@ sub getKey ( $file ) {
     return $pass;
 }
 
-my $privKey     = getKey('privkey.txt');
-my $pubkey      = getKey('pubkey.txt');
+my $privKey     = &getKey('privkey.txt');
+my $pubkey      = &getKey('pubkey.txt');
 my $timeStamp   = time;
 my $secretKey   = md5_hex($timeStamp$privKey$pubKey);
 
