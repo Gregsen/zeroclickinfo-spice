@@ -1,6 +1,7 @@
-package DDG::Spice::Plos;
+package DDG::Spice::Marvel;
 
 use DDG::Spice;
+use Digest::MD5 qw(md5_hex);
 
 name 'Marvel Comic Search';
 description 'Search for Marvel super heroes';
@@ -10,13 +11,26 @@ category 'special';
 topics 'science';
 icon_url '';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Marvel.pm';
-attribution github => ['Gregsen', ''],
-			web => ['', ''];
+attribution github => ['Gregsen', ''];
 
 triggers startend => 'Marvel';
 
-spice to => 'http://gateway.marvel.com/v1/public/characters'
-            .'?ts={time stampt}&apikey={public key}&hash={m5(timestamp+private key+public key)}'
+# helper function to read my dev keys from file
+sub getKey ( $file ) {
+    my $file = @_;
+    open my $fh "<", $fh or die $!;
+    my $pass = chomp(<$fh>);
+
+    return $pass;
+}
+
+my $privKey     = getKey('privkey.txt');
+my $pubkey      = getKey('pubkey.txt');
+my $timeStamp   = time;
+my $secretKey   = md5_hex($timeStamp$privKey$pubKey);
+
+spice to => 'http://gateway.marvel.com/v1/public/characters?name=$1'
+            .'?ts=$timeStamp&apikey=$pubKey&hash=$secretKey';
 spice wrap_jsonp_callback => 1;
 
 
