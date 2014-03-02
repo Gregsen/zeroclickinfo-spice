@@ -18,7 +18,7 @@ triggers startend => 'Marvel';
 # helper function to read my dev keys from file
 sub getKey  {
     my $file = @_;
-    open my $fh "<", $fh or die $!;
+    open my $fh, "<", $fh or die $!;
     my $pass = chomp(<$fh>);
 
     return $pass;
