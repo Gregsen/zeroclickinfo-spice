@@ -16,18 +16,22 @@ attribution github => ['Gregsen', 'dd'];
 triggers start => 'marvel';
 
 my $timeStamp   = time;
-my $secretKey   = '';#md5_hex($timeStamp.{{ENV{DDG_SPICE_MARVEL_PRIVKEY}}}.{{ENV{DDG_SPICE_MARVEL_PUBKEY}}});
+#my $secretKey   = md5_hex($timeStamp.{{ENV{DDG_SPICE_MARVEL_PRIVKEY}}}.{{ENV{DDG_SPICE_MARVEL_PUBKEY}}});
 
+spice from => '([^/]+)/?(?:([^/]+)/?)|)';
 spice to => 'http://gateway.marvel.com/v1/public/characters?name=$1'
-            .'?ts=$timeStamp&apikey={{ENV{DDG_SPICE_MARVEL_PUBKEY}}}'
-            .'&hash=$secretKey';
+            .'&ts=$timeStamp&apikey={{ENV{DDG_SPICE_MARVEL_PUBKEY}}}'
+            .'&hash=$2';
 spice wrap_jsonp_callback => 1;
 
 
 handle remainder => sub {
-    # Only trigger if the remainder does not exist in the skip hash.
-    return $_ if $_ ;
+    my $secretKey   = md5_hex($timeStamp.${ENV{DDG_SPICE_MARVEL_PRIVKEY}}.${ENV{DDG_SPICE_MARVEL_PUBKEY}});
+    if ($_){
+         return $_, $secretKey;
+     } else {
     return;
+}
 };
 
 1;
