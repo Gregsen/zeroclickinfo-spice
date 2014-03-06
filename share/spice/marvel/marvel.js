@@ -4,9 +4,9 @@ function ddg_spice_marvel (api_result) {
     Spice.render({
         data              : api_result,
         force_big_header  : true,
-        header1           : api_result.name + ' (' + api_result.version + ')',
+        header1           : api_result.data.results[0].name,
         source_name       : "marvel.com", // More at ...
-        source_url        : 'http://marvel.com/universe/' + api_result.name,
+        source_url        : api_result.data.results[0].urls[0].url,
         force_no_fold     : true,
         template_normal   : 'marvel'
             });
