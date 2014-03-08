@@ -1,5 +1,6 @@
-<div>
-    <div>{{data.results.0.name}}</div>
-    <pre>{{data.results.0.description}}</pre>
-<div>
-
+{{#rd}}{{data.results.0.description}}{{/rd}}
+<ul>
+{{#each data.results.0.comics.items}}
+<li>{{name}}</li>
+{{/each}}
+</ul>
