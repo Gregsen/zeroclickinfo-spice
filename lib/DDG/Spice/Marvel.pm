@@ -24,6 +24,7 @@ spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
 my $timeStamp   = time;
+#my $secretKey   =  $timeStamp${ENV{DDG_SPICE_MARVEL_PRIVKEY}}${ENV{DDG_SPICE_MARVEL_PUBKEY}}
 my $secretKey   = md5_hex($timeStamp.${ENV{DDG_SPICE_MARVEL_PRIVKEY}}.${ENV{DDG_SPICE_MARVEL_PUBKEY}});
     if ($_){
          return $_, $timeStamp, $secretKey;
